@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import TasksList from "../TasksList";
 import SearchBox from "./SearchTask";
@@ -9,7 +10,7 @@ export default function TasksBord() {
     title: "API",
     description:
       "Connect an existing API to a third-party database using secure methods and handle data exchange efficiently",
-    tags: '["web" , "react" , "javaScript" ]',
+    tags: ["web", "react", "javaScript"],
     priority: "High",
     isFavorite: true,
   };

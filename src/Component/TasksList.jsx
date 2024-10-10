@@ -1,9 +1,5 @@
 /* eslint-disable react/prop-types */
 export default function TasksList({ tasks }) {
-  console.log(tasks);
-  tasks.map(function (task) {
-    return console.log(task.tags.map((tag) => console.log(tag)));
-  });
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -56,9 +52,13 @@ export default function TasksList({ tasks }) {
               </td>
               <td>
                 <ul className="flex justify-center gap-1.5 flex-wrap">
-                  <li>
-                    <span className="inline-block h-5 whitespace-nowrap rounded-[45px] bg-[#00D991A1] px-2.5 text-sm capitalize text-[#F4F5F6]"></span>
-                  </li>
+                  {task.tags.map((tag) => (
+                    <li key={tag}>
+                      <span className="inline-block h-5 whitespace-nowrap rounded-[45px] bg-[#00D991A1] px-2.5 text-sm capitalize text-[#F4F5F6]">
+                        {tag}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </td>
               <td className="text-center">High</td>
