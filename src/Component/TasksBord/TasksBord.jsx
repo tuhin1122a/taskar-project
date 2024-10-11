@@ -16,23 +16,72 @@ export default function TasksBord() {
   };
   const [tasks, setTasks] = useState([defaultTask]);
   const [showAddTask, setShowAddTask] = useState(false);
-  function handleAddTask(task) {
-    console.log("tuhin", task);
-    setTasks([...tasks, task]);
+  const [taskToUpdate, setTaskToUpdate] = useState(null);
+
+  function handleAddTask(newTask, isAdd) {
+    if (isAdd) {
+      setTasks([...tasks, newTask]);
+    } else {
+      setTasks(
+        tasks.map((task) => {
+          if (task.id === newTask.id) {
+            return newTask;
+          }
+          return task;
+        })
+      );
+    }
+
     setShowAddTask(false);
   }
+  function handleEditTask(task) {
+    setTaskToUpdate(task);
+    setShowAddTask(true);
+  }
+  function handleCloseClick() {
+    setShowAddTask(false);
+    setTaskToUpdate(null);
+  }
+  function handleDeleteTask(taskId) {
+    const taskAfterDelete = tasks.filter((task) => task.id !== taskId);
+    setTasks(taskAfterDelete);
+  }
 
+  function handleAllDeleteClick() {
+    tasks.length = 0;
+    setTasks([...tasks]);
+  }
+  function handleOnFAvorite(taskId) {
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+    const newTasks = [...tasks];
+    newTasks[taskIndex].isFavorite = !newTasks[taskIndex].isFavorite;
+    setTasks(newTasks);
+  }
   return (
     <section className="mb-20" id="tasks">
-      {showAddTask && <AddTaskModel onSave={handleAddTask} />}
+      {showAddTask && (
+        <AddTaskModel
+          onSave={handleAddTask}
+          onCloseClick={handleCloseClick}
+          taskToUpdate={taskToUpdate}
+        />
+      )}
       <div className="container">
         <div className="p-2 flex justify-end">
           <SearchBox />
         </div>
 
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
-          <TasksAction onAddClick={() => setShowAddTask(true)} />
-          <TasksList tasks={tasks} />
+          <TasksAction
+            onAddClick={() => setShowAddTask(true)}
+            onDeleteAll={handleAllDeleteClick}
+          />
+          <TasksList
+            tasks={tasks}
+            onEdit={handleEditTask}
+            onDelete={handleDeleteTask}
+            onFav={handleOnFAvorite}
+          />
         </div>
       </div>
     </section>
