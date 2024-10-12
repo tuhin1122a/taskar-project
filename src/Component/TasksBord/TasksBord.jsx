@@ -67,7 +67,7 @@ export default function TasksBord() {
     setTasks([...filtered]);
   }
   return (
-    <section className="mb-20" id="tasks sm:">
+    <section className="mb-20" id="tasks">
       {showAddTask && (
         <AddTaskModel
           onSave={handleAddTask}
@@ -75,7 +75,7 @@ export default function TasksBord() {
           taskToUpdate={taskToUpdate}
         />
       )}
-      <div className="container">
+      <div className="container sm:w-full h-full">
         <div className="p-2 flex justify-end">
           <SearchBox onScarch={handleSearch} />
         </div>
