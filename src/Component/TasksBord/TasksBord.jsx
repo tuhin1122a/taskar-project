@@ -1,8 +1,9 @@
 import { useState } from "react";
-import TasksList from "../TasksList";
+
 import AddTaskModel from "./AddTaskModel";
 import SearchBox from "./SearchTask";
 import TasksAction from "./TasksAction";
+import TasksList from "./TasksList";
 
 export default function TasksBord() {
   const defaultTask = {
