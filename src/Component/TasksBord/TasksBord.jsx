@@ -85,7 +85,7 @@ export default function TasksBord() {
             onAddClick={() => setShowAddTask(true)}
             onDeleteAll={handleAllDeleteClick}
           />
-          {tasks.lenggth > 0 ? (
+          {tasks.length > 0 ? (
             <TasksList
               tasks={tasks}
               onEdit={handleEditTask}
