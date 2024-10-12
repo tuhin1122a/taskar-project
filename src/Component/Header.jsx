@@ -5,7 +5,7 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-start gap-x-6 rounded-full">
         <a href="/">
           <img
-            className="h-[45px] w-[45px] rounded-full ml-1 border-green-400 border-solid border-4"
+            className="h-[45px] w-[45px] rounded-full ml-1 border-green-400 border-solid border-2"
             src={Logo}
             alt="Lws"
           />
