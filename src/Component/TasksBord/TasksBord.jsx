@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import AddTaskModel from "./AddTaskModel";
+import NoTaskFound from "./NoTaskFound";
 import SearchBox from "./SearchTask";
 import TasksAction from "./TasksAction";
 import TasksList from "./TasksList";
@@ -58,6 +59,13 @@ export default function TasksBord() {
     newTasks[taskIndex].isFavorite = !newTasks[taskIndex].isFavorite;
     setTasks(newTasks);
   }
+  function handleSearch(scarchTram) {
+    console.log(scarchTram);
+    const filtered = tasks.filter((task) =>
+      task.title.toLowerCase().includes(scarchTram.toLowerCase())
+    );
+    setTasks([...filtered]);
+  }
   return (
     <section className="mb-20" id="tasks">
       {showAddTask && (
@@ -69,7 +77,7 @@ export default function TasksBord() {
       )}
       <div className="container">
         <div className="p-2 flex justify-end">
-          <SearchBox />
+          <SearchBox onScarch={handleSearch} />
         </div>
 
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
@@ -77,12 +85,16 @@ export default function TasksBord() {
             onAddClick={() => setShowAddTask(true)}
             onDeleteAll={handleAllDeleteClick}
           />
-          <TasksList
-            tasks={tasks}
-            onEdit={handleEditTask}
-            onDelete={handleDeleteTask}
-            onFav={handleOnFAvorite}
-          />
+          {tasks.lenggth > 0 ? (
+            <TasksList
+              tasks={tasks}
+              onEdit={handleEditTask}
+              onDelete={handleDeleteTask}
+              onFav={handleOnFAvorite}
+            />
+          ) : (
+            <NoTaskFound />
+          )}
         </div>
       </div>
     </section>
