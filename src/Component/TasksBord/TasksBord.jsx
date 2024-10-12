@@ -67,7 +67,7 @@ export default function TasksBord() {
     setTasks([...filtered]);
   }
   return (
-    <section className="mb-20" id="tasks">
+    <section className="mb-20" id="tasks sm:">
       {showAddTask && (
         <AddTaskModel
           onSave={handleAddTask}
