@@ -6,7 +6,6 @@ export default function Header() {
         <a href="/">
           <img className="h-[45px] rounded-full" src={Logo} alt="Lws" />
         </a>
-        <p>Tuhin</p>
       </div>
     </nav>
   );
